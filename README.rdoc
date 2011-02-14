@@ -1,4 +1,4 @@
 = rqtrotate
 
-Pure ruby library toe detect and affect rotation of QuickTime movies
+Pure ruby library to detect and affect rotation of QuickTime movies
 

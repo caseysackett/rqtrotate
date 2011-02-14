@@ -9,25 +9,25 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
 == Usage
 
 === Ruby
-require 'rubygems'
-require 'rqtrotate'
+  require 'rubygems'
+  require 'rqtrotate'
 
-include RQTRotate
+  include RQTRotate
 
-File.open("./test.mov", File::RDWR) do |datastream|
-  degrees = get_rotation(datastream)
-  if degrees != 0
-    datastream.rewind
+  File.open("./test.mov", File::RDWR) do |datastream|
+    degrees = get_rotation(datastream)
+    if degrees != 0
+      datastream.rewind
 
-    rotate(datastream, 90)
+      rotate(datastream, 90)
+    end
   end
-end
 
 === Command Line
-$ qtrotate_get ./test.mov
-90
+  $ qtrotate_get ./test.mov
+  90
 
-$ qtrotate_set ./test.mov 90
+  $ qtrotate_set ./test.mov 90
 
 == Copyright
 

@@ -43,15 +43,15 @@ class Array
       pack('c*')     
     else
       result = ''
-      
+
       each do |i|
         br = ''
-        
+
         4.times do
           br << (i & 0xFF)
           i >>= 8
         end
-                
+
         result << br.reverse! 
       end
       

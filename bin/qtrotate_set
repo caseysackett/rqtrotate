@@ -9,6 +9,6 @@ if ARGV.length < 2
   puts "Usage: qtrotate_set [path] [degrees]"
 else
   File.open(ARGV[0], File::RDWR) do |datastream|
-    puts rotate datastream, ARGV[1].to_i
+    rotate datastream, ARGV[1].to_i
   end
 end

@@ -24,10 +24,12 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
   end
 
 === Command Line
+  # see if a file is rotated
   $ qtrotate_get ./test.mov
   90
-
-  $ qtrotate_set ./test.mov 90
+  
+  # rotate to 0 degrees
+  $ qtrotate_set ./test.mov 0
 
 == Copyright
 

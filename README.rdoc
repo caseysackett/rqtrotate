@@ -31,4 +31,4 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
 
 == Copyright
 
-Copyright 2010 The Skunkworx.
+Copyright 2011 The Skunkworx.

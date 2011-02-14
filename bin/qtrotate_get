@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'rqtrotate
+require 'rqtrotate'
 
 include RQTRotate
 
@@ -9,6 +9,6 @@ if ARGV.length == 0
   puts "Usage: qtrotate_get [path]"
 else
   File.open(ARGV[0], File::RDWR) do |datastream|
-    puts get_rotation ARGV[0]
+    puts get_rotation datastream
   end
 end

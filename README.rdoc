@@ -2,3 +2,6 @@
 
 Pure ruby library to detect and affect rotation of QuickTime movies
 
+== Credits
+
+The logical core of this library is a port of Daniel G. Taylor's qtrotate python library(https://github.com/danielgtaylor/qtrotate). 

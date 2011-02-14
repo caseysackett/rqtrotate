@@ -55,7 +55,8 @@ module RQTRotate
       end
     end
   end
-  
+
+  # determine if an existing stream is rotated  
   def get_rotation(datastream)
     degrees = []
 
@@ -84,6 +85,7 @@ module RQTRotate
     end
   end
   
+  # take an existing stream and rotate it
   def rotate(datastream, rotation)
     process_stream(datastream) do |atom_type, matrix|
       if atom_type == 'tkhd'

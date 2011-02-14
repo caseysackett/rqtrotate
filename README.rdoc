@@ -28,3 +28,7 @@ $ qtrotate_get ./test.mov
 90
 
 $ qtrotate_set ./test.mov 90
+
+== Copyright
+
+Copyright 2010 The Skunkworx.

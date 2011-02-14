@@ -1,3 +1,16 @@
+# Copyright 2011 The Skunkworx.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 module RQTRotate
   # Read a single atom and return an array of [size, type].
@@ -93,7 +106,9 @@ module RQTRotate
         cos_deg = ((1 << 16) * Math::cos(rad)).to_i
         sin_deg = ((1 << 16) * Math::sin(rad)).to_i
 
-        #value = [cos_deg, sin_deg, 0, -sin_deg, cos_deg, 0, 0, 0, (1 << 30)].pack("O9")
+
+        # pending patch acceptance to pack.c
+        # value = [cos_deg, sin_deg, 0, -sin_deg, cos_deg, 0, 0, 0, (1 << 30)].pack("O9")
         value = [cos_deg, sin_deg, 0, -sin_deg, cos_deg, 0, 0, 0, (1 << 30)].signed_bigendian_pack()
         
         datastream.seek(-36, 1)

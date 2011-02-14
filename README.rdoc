@@ -9,7 +9,6 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
 == Usage
 
 === Ruby
-
 require 'rubygems'
 require 'rqtrotate'
 
@@ -25,7 +24,6 @@ File.open("./test.mov", File::RDWR) do |datastream|
 end
 
 === Command Line
-
 $ qtrotate_get ./test.mov
 90
 

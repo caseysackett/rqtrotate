@@ -110,6 +110,8 @@ module RQTRotate
     end
   end
 
+  # core of the whole thing. find all relevant atoms
+  # and yield to consumers
   def process_stream(datastream, &block)
     index = get_index(datastream)
     moov_size = -1

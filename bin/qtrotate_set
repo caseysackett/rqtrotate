@@ -23,7 +23,11 @@ include RQTRotate
 if ARGV.length < 2
   puts "Usage: qtrotate_set [path] [degrees]"
 else
-  File.open(ARGV[0], File::RDWR) do |datastream|
-    rotate datastream, ARGV[1].to_i
-  end
+  begin
+    File.open(ARGV[0], File::RDWR) do |datastream|
+      rotate datastream, ARGV[1].to_i
+    end
+  rescue
+    puts "Unable to process #{ARGV[0]}"
+  end    
 end

@@ -23,7 +23,7 @@ if ARGV.length < 2
   puts "Usage: qtrotate_set [path] [degrees]"
 else
   begin
-    Movie.new(:file_name => ARGV[0])  do |movie|
+    Movie.open(ARGV[0])  do |movie|
       movie.rotation = ARGV[1].to_i
     end
   rescue

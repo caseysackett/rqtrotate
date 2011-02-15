@@ -1,10 +1,12 @@
 = rqtrotate
 
-Pure ruby library to detect and affect rotation of QuickTime movies
+Pure ruby library to detect and affect rotation of ISO Base Media Format files
+such as Apple QuickTime and 3gp.
 
 == Credits
 
-The logical core of this library is a port of Daniel G. Taylor's qtrotate python library(https://github.com/danielgtaylor/qtrotate).  Many, MANY thanks to him!
+The logical core of this library is a port of Daniel G. Taylor's qtrotate python
+library(https://github.com/danielgtaylor/qtrotate).  Many, MANY thanks to him!
 
 == Usage
 
@@ -15,7 +17,7 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
   include RQTRotate
 
   # block style
-  Movie.new(:file_name => ARGV[0]) do |movie|
+  Movie.open(:file_name => ARGV[0]) do |movie|
     degrees = movie.rotation  
     puts "rotation is #{degrees}"
 
@@ -24,7 +26,7 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
   
   # stream style
   File.open(ARGV[0], File::RDWR) do |f|
-    movie = Movie.new(:stream => f)
+    movie = Movie.new(f)
     
     degrees = movie.rotation  
     puts "rotation is #{degrees}"

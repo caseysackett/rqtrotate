@@ -23,7 +23,7 @@ if ARGV.length == 0
   puts "Usage: qtrotate_get [path]"
 else
   begin
-    Movie.new(:file_name => ARGV[0]) do |movie|
+    Movie.open(ARGV[0]) do |movie|
       puts movie.rotation
     end
   rescue

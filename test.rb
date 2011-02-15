@@ -5,7 +5,7 @@ end
 
 include RQTRotate
 
-Movie.new(:file_name => ARGV[0]) do |movie|
+Movie.open(ARGV[0]) do |movie|
   degrees = movie.rotation  
   puts "rotation is #{degrees}"
 

@@ -15,6 +15,8 @@
 
 module RQTRotate
   class Movie
+    attr_accessor :stream
+    
     def rotation=(value)
       set_rotation @stream, value
       reset_stream
@@ -25,25 +27,21 @@ module RQTRotate
       reset_stream
       rotation
     end
-    
-    def initialize(options, &block)
-      if options[:file_name] && block
-        @stream = File.open(options[:file_name], File::RDWR)
-        @owns_stream = true
-      elsif options[:stream]
-        @stream = options[:stream]
-      else
-        raise "Neither file_name with block nor stream specified"
-      end
 
-      block.call self
-      
-      @stream.close if @owns_stream && block
+    def self.open(file_name, &block)
+      movie = Movie.new(File.open(file_name, File::RDWR), true)
+      block.call movie      
+      movie.stream.close
+    end
+    
+    def initialize(stream, owns_stream = false)
+      @stream = stream
+      @owns_stream = owns_stream
     end
     
     private
     def reset_stream
-      @stream.seek(0, IO::SEEK_SET) if @owns_stream
+       @stream.seek(0, IO::SEEK_SET) if @owns_stream
     end
   end
 end

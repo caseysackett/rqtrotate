@@ -68,7 +68,7 @@ module RQTRotate
       end
     end
   end
-
+  
   # determine if an existing stream is rotated  
   def get_rotation(stream)
     degrees = []
@@ -80,9 +80,10 @@ module RQTRotate
         else
           matrix[i] = matrix[i].to_f / (1 << 16)
         end
-      end
+      end   
 
       if ['mvhd', 'tkhd'].include?(atom_type)
+        # convert radians to degrees
         deg = -(Math::asin(matrix[3]) * (180.0 / Math::PI)) % 360
         deg = (Math::acos(matrix[0]) * (180.0 / Math::PI)) if deg == 0
         degrees << deg if deg != 0
@@ -102,24 +103,19 @@ module RQTRotate
   def set_rotation(stream, rotation)
     process_stream(stream) do |atom_type, matrix|
       if atom_type == 'tkhd'
+        # degrees to radians
         rad = rotation * Math::PI / 180.0
+        # rotate
         cos_deg = ((1 << 16) * Math::cos(rad)).to_i
         sin_deg = ((1 << 16) * Math::sin(rad)).to_i
 
         # pending patch acceptance to pack.c
         # value = [cos_deg, sin_deg, 0, -sin_deg, cos_deg, 0, 0, 0, (1 << 30)].pack("O9")
+        # build data to write back into stream
         value = [cos_deg, sin_deg, 0, -sin_deg, cos_deg, 0, 0, 0, (1 << 30)].signed_bigendian_pack()
         
         stream.seek(-36, IO::SEEK_CUR)
         stream.write(value)
-      else
-        9.times do |i|
-          if (i + 1) % 3 == 0
-            matrix[i] = matrix[i].to_f / (1 << 30)
-          else
-            matrix[i] = matrix[i].to_f / (1 << 16)
-          end
-        end        
       end
     end
   end

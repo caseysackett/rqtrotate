@@ -14,13 +14,22 @@ The logical core of this library is a port of Daniel G. Taylor's qtrotate python
 
   include RQTRotate
 
-  File.open("./test.mov", File::RDWR) do |datastream|
-    degrees = get_rotation(datastream)
-    if degrees != 0
-      datastream.rewind
+  # block style
+  Movie.new(:file_name => ARGV[0]) do |movie|
+    degrees = movie.rotation  
+    puts "rotation is #{degrees}"
 
-      rotate(datastream, 90)
-    end
+    movie.rotation = degrees + 90
+  end
+  
+  # stream style
+  File.open(ARGV[0], File::RDWR) do |f|
+    movie = Movie.new(:stream => f)
+    
+    degrees = movie.rotation  
+    puts "rotation is #{degrees}"
+
+    movie.rotation = degrees + 90
   end
 
 === Command Line

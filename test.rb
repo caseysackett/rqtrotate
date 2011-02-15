@@ -5,15 +5,9 @@ end
 
 include RQTRotate
 
-File.open(ARGV[0], File::RDWR) do |datastream|
-  degrees = get_rotation(datastream)
-  
+Movie.new(:file_name => ARGV[0]) do |movie|
+  degrees = movie.rotation  
   puts "rotation is #{degrees}"
 
-  if degrees != 0
-    datastream.rewind
-
-    puts "rotating from #{degrees}"
-    rotate(datastream, 270)
-  end
+  movie.rotation = degrees + 90
 end

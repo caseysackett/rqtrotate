@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 require 'rubygems'
 require 'rqtrotate'
 
@@ -24,10 +23,10 @@ if ARGV.length < 2
   puts "Usage: qtrotate_set [path] [degrees]"
 else
   begin
-    File.open(ARGV[0], File::RDWR) do |datastream|
-      rotate datastream, ARGV[1].to_i
+    Movie.new(:file_name => ARGV[0])  do |movie|
+      movie.rotation = ARGV[1].to_i
     end
   rescue
     puts "Unable to process #{ARGV[0]}"
-  end    
+  end
 end

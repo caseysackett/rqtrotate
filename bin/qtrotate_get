@@ -23,8 +23,8 @@ if ARGV.length == 0
   puts "Usage: qtrotate_get [path]"
 else
   begin
-    File.open(ARGV[0], File::RDWR) do |datastream|
-      puts get_rotation datastream
+    Movie.new(:file_name => ARGV[0]) do |movie|
+      puts movie.rotation
     end
   rescue
     puts "Unable to process #{ARGV[0]}"

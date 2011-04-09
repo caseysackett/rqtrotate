@@ -1,7 +1,7 @@
 = rqtrotate
 
 Pure ruby library to detect and affect rotation of ISO Base Media Format files
-such as Apple QuickTime and 3gp by maniuplating the structure matrix, not re-encoding.
+such as Apple QuickTime and 3gp by maniuplating the structure matrix, not re-encoding. Note that not all players handle the matrix identically and require re-encoding instead of this method.
 
 == Credits
 
